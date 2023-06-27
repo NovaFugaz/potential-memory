@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% load custom_tags %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+        <div class="row">
+            {% for attribute, desc in attr_desc %}
+                <div class="col-2">
+                    <div class="card h-100 att-{{ attribute|lower }}">
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-center">{{ attribute }}</h5>
+                            <p class="card-text text-center"> {{ desc }}.</p>
+                            <form method="post" action="">
+                                {% csrf_token %}
+                                <input type="text" class="form-control-lg mb-2 w-100" id="mod-{{ attribute|lower }}" value="" placeholder="Modificador" disabled>
+                                <input type="number" class="form-control-lg mb-2 w-100" id="val-{{ attribute|lower }}" value="">
+                                {{ form.modifier|crispy }}
+                                <button type="submit" class="btn btn btn-outline-success btn-sm" onclick="event.preventDefault(); updateModifier('{{ attribute|lower }}');">Calcular</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="{% static 'stats/js/script.js' %}"></script>
+    
+{% endblock content %}

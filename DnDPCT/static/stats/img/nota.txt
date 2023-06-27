@@ -1,0 +1,2 @@
+Faltan los íconos de cada estadística :c
+Si los consigues o se te ocurre cuáles usar, hacer el for loop es sencillo :3
